@@ -1,0 +1,163 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: i386-w64-mingw32/i386 (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #R datatypes
+> #vector
+> #creating vectors
+> a<-c(1,2,3) #numeric vector
+> b<-c('a','b','c') # character vector
+> c<-c(TRUE,FALSE,TRUE) #logical vector
+> d<-seq(10,20,by=2)
+> e<-rep(10,10)
+> a
+[1] 1 2 3
+> b
+[1] "a" "b" "c"
+> c
+[1]  TRUE FALSE  TRUE
+> d
+[1] 10 12 14 16 18 20
+> e
+ [1] 10 10 10 10 10 10 10 10 10 10
+> #using indexing and slicing
+> a[2]
+[1] 2
+> b[1:3]
+[1] "a" "b" "c"
+> #length
+> length(d)
+[1] 6
+> #type of vector
+> typeof(d)
+[1] "double"
+> #list
+> w<-list('w','x','y',TRUE,a,d,e)
+> w
+[[1]]
+[1] "w"
+
+[[2]]
+[1] "x"
+
+[[3]]
+[1] "y"
+
+[[4]]
+[1] TRUE
+
+[[5]]
+[1] 1 2 3
+
+[[6]]
+[1] 10 12 14 16 18 20
+
+[[7]]
+ [1] 10 10 10 10 10 10 10 10 10 10
+
+> #indexing
+> w[[1]]
+[1] "w"
+> w[[5]][1]
+[1] 1
+> list_data<-list(c('Jan','Feb','Mar'),matrix(c(3,9,5,1,-2,8),nrow=2))
+> list_data
+[[1]]
+[1] "Jan" "Feb" "Mar"
+
+[[2]]
+     [,1] [,2] [,3]
+[1,]    3    5   -2
+[2,]    9    1    8
+
+> list_data[[1]]
+[1] "Jan" "Feb" "Mar"
+> #matrix
+> y<-matrix(1:20,nrow=5,ncol=4)
+> y
+     [,1] [,2] [,3] [,4]
+[1,]    1    6   11   16
+[2,]    2    7   12   17
+[3,]    3    8   13   18
+[4,]    4    9   14   19
+[5,]    5   10   15   20
+> cells<-c(1,26,24,68)
+> rname<-c("R1","R2")
+> cname<-c("C1","C2")
+> mymatrix<-matrix(cells,nrow=2,ncol=2,byrow=TRUE,dimnames=list(rname,cname))
+> mymatrix
+   C1 C2
+R1  1 26
+R2 24 68
+> #operations
+> dim(mymatrix)
+[1] 2 2
+> t(mymatrix)
+   R1 R2
+C1  1 24
+C2 26 68
+> det(mymatrix)
+[1] -556
+> eigen(mymatrix)
+eigen() decomposition
+$values
+[1] 76.288156 -7.288156
+
+$vectors
+           [,1]       [,2]
+[1,] -0.3264234 -0.9527623
+[2,] -0.9452237  0.3037170
+
+> mymatrix[1,2]
+[1] 26
+> #factor
+> gender<-c(rep('male',20),rep('female',30))
+> gender<-factor(gender)
+> gender
+ [1] male   male   male   male   male   male   male   male   male   male   male   male   male   male   male   male   male   male   male   male   female female female
+[24] female female female female female female female female female female female female female female female female female female female female female female female
+[47] female female female female
+Levels: female male
+> #data frame
+> d<-c(1,2,3,4)
+> f<-c(TRUE,TRUE,FALSE,TRUE)
+> e<-c("red","white","red",'green')
+> mydata<-data.frame(d,e,f)
+> mydata
+  d     e     f
+1 1   red  TRUE
+2 2 white  TRUE
+3 3   red FALSE
+4 4 green  TRUE
+> #names()
+> names(mydata)<-c("id","color","passed")
+> mydata
+  id color passed
+1  1   red   TRUE
+2  2 white   TRUE
+3  3   red  FALSE
+4  4 green   TRUE
+> mydata[1:3]
+  id color passed
+1  1   red   TRUE
+2  2 white   TRUE
+3  3   red  FALSE
+4  4 green   TRUE
+> mydata[1:2,1]
+[1] 1 2
+> 
