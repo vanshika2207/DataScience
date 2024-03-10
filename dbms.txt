@@ -136,3 +136,25 @@ select * from dept,emp where dept.deptno=emp.deptno(+)
 
 
 select * from emp FULL OUTER JOIN dept on emp.deptno=dept.deptno
+select e.* ,d.* from emp e, dept d where e.deptno=d.deptno;
+select * from emp where not exists(select 'random' from dual)
+select * from emp where  exists(select 'random' from dual)
+
+/*correlated subquery */
+	SELECT d.*
+	FROM dept d
+	WHERE EXISTs (SELECT * FROM emp WHERE d.deptno=emp.deptno)
+
+select e1.ename as employee_name , e2.ename as manager_name from emp e1 inner join emp e2 on e1.MGR =e2.empno
+
+select * from emp , dept;
+select * from emp cross join dept;
+select * from emp natural join dept;
+
+SELECT * FROM EMP INNER JOIN DEPT USING(DEPTNO)
+select * from emp  ,dept WHERE emp.deptno=dept.deptno;
+
+select * from job_grade
+
+select e.ename , e.sal , j.grade_level from emp e join job_grade j
+on e.sal between j.lowest_sal and j.highest_sal;
