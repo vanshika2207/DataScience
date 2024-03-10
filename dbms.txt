@@ -83,3 +83,31 @@ select to_date('2012-22-07','yyyy-dd-mm') from dual;
 select to_number('123') from dual;
 select ename,sal ,NVL(comm,0) from emp ;
 select ename,length(ename),nullif(length(ename),5) from emp;
+select max(sal) from emp;
+select min(comm) from emp;
+select avg(sal) from emp;
+select count(ename) as total_number from emp;
+select sum(sal)/count(*) as average_salary from emp;
+select avg(sal) from emp where job='ANALYST' //3000
+select avg(sal) from emp where job='SALESMAN' //1400
+select job,avg(sal) from emp group by job
+select job,count(*) from emp group by job
+select job,avg(sal)
+ from emp 
+ where ename like '_____' 
+ group by job
+  having avg(sal)>1500 
+  ORDER BY job;
+
+select deptno,job,count(*)
+from emp
+group by deptno , job
+order by deptno  
+
+/*NESTED QUERIES*/
+select * from dept where deptno<(select deptno from dept where deptno=30)
+select * from emp where deptno=(select deptno from dept where loc='CHICAGO')
+select * from emp where deptno in (select deptno from dept where deptno in(10,20))
+select * from emp where deptno in (select deptno,loc from dept where deptno in(10,20)) /*NOT WORK*/
+select * from (select * from dept);
+select  ename ,(select job from emp where ename='KING') from emp;
